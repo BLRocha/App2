@@ -6,7 +6,7 @@ namespace App2.Context
 {
     public class ContextDb : DbContext
     {
-        public DbSet<EmployeesModel> Employees { get; set; }
+        public DbSet<EmployeesModel>? Employees { get; set; }
 
         public ContextDb(DbContextOptions<ContextDb> options) : base(options)
         {
