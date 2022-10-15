@@ -4,17 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using App2.Models.Repositores.Repository;
 
 namespace App2.Models.Repositores
 {
-    public class EmployeesRepositore
+    sealed public class EmployeesRepositore : ARepository
     {
-
-        protected readonly ContextDb _context;
-
-        public EmployeesRepositore(ContextDb context)
+        public EmployeesRepositore(ContextDb context) : base(context)
         {
-            _context = context;
         }
 
         public async Task<IList<EmployeesModel>> GetEmployes()
