@@ -8,9 +8,9 @@ using App2.Models.Repositores.Repository;
 
 namespace App2.Models.Repositores
 {
-    sealed public class EmployeesRepositore : ARepository
+    sealed public class EmployeesRepository : ARepository
     {
-        public EmployeesRepositore(ContextDb context) : base(context)
+        public EmployeesRepository(ContextDb context) : base(context)
         {
         }
 
