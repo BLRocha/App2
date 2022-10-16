@@ -10,13 +10,12 @@ namespace App2.Helpers
         private IList<T> _tableList = new List<T>();
 
         private DataSet _dataSet = new DataSet();
-        private DataTable _dataTable = new DataTable("Table");
+        private DataTable _dataTable = new DataTable();
         public PreencherDataSet(IList<T> Table)
         {
             if (Table != null)
             {
                 _tableList = Table;
-
                 _propertyInfo = typeof(T).GetProperties();
                 _tableColumns();
             }
@@ -38,10 +37,7 @@ namespace App2.Helpers
                 DataRow row = _dataTable.NewRow();
                 foreach (var prop in _propertyInfo)
                 {
-                    var item = typeof(T)?
-                        .GetProperty(prop.Name.ToString())?
-                        .GetValue(_tableList[i], null);
-                    row[prop.Name.ToString()] = item; 
+                    row[prop.Name.ToString()] = prop.GetValue(_tableList[i]);
                 }
                 _dataTable.Rows.Add(row);
             }
@@ -51,6 +47,11 @@ namespace App2.Helpers
         {
             _dataSet.Tables.Add(_dataTable);
             return _dataSet;
+        }
+
+        public DataTable GetDataTable()
+        {
+            return _dataTable;
         }
     }
 }
