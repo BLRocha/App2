@@ -11,13 +11,13 @@ namespace App2.Controllers
     [Route("[controller]")]
     public class ApiController : ControllerBase
     {
-        protected readonly EmployeesRepositore _employerRepo;
-        protected readonly JobHistoryRepositore _jobHistoryRepositore;
+        protected readonly EmployeesRepository _employerRepository;
+        protected readonly JobHistoryRepository _jobHistoryRepository;
 
         public ApiController(ContextDb context)
         {
-            _employerRepo = new EmployeesRepositore(context);
-            _jobHistoryRepositore = new JobHistoryRepositore(context);
+            _employerRepository = new EmployeesRepository(context);
+            _jobHistoryRepository = new JobHistoryRepository(context);
         }
         [HttpGet]
         public string index()
@@ -28,13 +28,13 @@ namespace App2.Controllers
         [HttpGet("employees")]
         public async Task<IList<EmployeesModel>> employes()
         {
-            return await _employerRepo.GetEmployes();
+            return await _employerRepository.GetEmployes();
         }
 
         [HttpGet("getjobs")]
         public async Task<IList<JobHistoryModel>> GetJobs()
         {
-            return await _jobHistoryRepositore.GetJobs();
+            return await _jobHistoryRepository.GetJobs();
         }
     }
 }
